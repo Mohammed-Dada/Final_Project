@@ -38,8 +38,6 @@ class _TvSeriesState extends State<TvSeries> {
         });
       }
     } else {
-      // print(apikey);
-      // print("error");
       print(populartvresponse.statusCode); // statusCode
     }
     /////////////////////////////////////////////

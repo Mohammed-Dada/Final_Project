@@ -25,8 +25,8 @@ class _MovieState extends State<Movies> {
         'https://api.themoviedb.org/3/movie/now_playing?api_key=$apikey';
     var topratedmoviesurl =
         'https://api.themoviedb.org/3/movie/top_rated?api_key=$apikey';
-    var latestmoviesurl =
-        'https://api.themoviedb.org/3/movie/latest?api_key=$apikey';
+    // var latestmoviesurl =
+    //     'https://api.themoviedb.org/3/movie/latest?api_key=$apikey';
 
     /////////////////////////////////
     var popularmoviesresponse = await http.get(Uri.parse(popularmoviesurl));

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:my_flutter_app/apikey/apikey.dart';
 import 'package:my_flutter_app/apilinks/allapi.dart';
 import 'package:my_flutter_app/home_page/SectionPage/movies.dart';
 import 'package:my_flutter_app/home_page/SectionPage/tvsenes.dart';
 import 'package:my_flutter_app/home_page/SectionPage/upcomming.dart';
+import 'package:my_flutter_app/repeated_function/searchbarfunc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,8 +20,6 @@ class _MyWidgetState extends State<HomePage> with TickerProviderStateMixin {
   Future<void> trendinglisthome() async {
     int uval = 1;
     if (uval == 1) {
-      // var trendingweekurl =
-      //     'https://api.themoviedb.org/3/trending/all/week?api_key=$apikey';
       var trendingweekresponse = await http.get(Uri.parse(trendingweekurl));
       if (trendingweekresponse.statusCode == 200) {
         var tempdata = jsonDecode(trendingweekresponse.body);
@@ -37,8 +35,6 @@ class _MyWidgetState extends State<HomePage> with TickerProviderStateMixin {
         }
       }
     } else if (uval == 2) {
-      // var trendingdayresponse =
-      //     'https://api.themoviedb.org/3/trending/all/day?api_key=$apikey';
       var trendingdayresponse = await http.get(Uri.parse(trendingdayurl));
       if (trendingdayresponse.statusCode == 200) {
         var tempdata = jsonDecode(trendingdayresponse.body);
@@ -118,9 +114,7 @@ class _MyWidgetState extends State<HomePage> with TickerProviderStateMixin {
                 },
               ),
             ),
-            iconTheme: const IconThemeData(
-              color: Colors.white,
-            ), // Set the drawer icon color to white
+            iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Color.fromRGBO(18, 18, 18, 0.9),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -191,8 +185,8 @@ class _MyWidgetState extends State<HomePage> with TickerProviderStateMixin {
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              Center(child: Text("Sample Text")),
-              Container(
+              searchbarfun(),
+              SizedBox(
                 height: 45,
                 width: MediaQuery.of(context).size.width,
                 child: TabBar(
@@ -211,7 +205,7 @@ class _MyWidgetState extends State<HomePage> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 1050,
                 child: TabBarView(
                   controller: _tabController,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/details/moviedetails.dart';
+import 'package:my_flutter_app/details/tvseriesdetail.dart';
 
 Widget sliderlist(
   List firstlistname,
@@ -22,8 +24,27 @@ Widget sliderlist(
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                print(firstlistname[index]['id']);
-                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context: movieDetails())))
+                if (type == 'movie') {
+                  // print(firstlistname[index]['id']);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) =>
+                              MovieDetails(id: firstlistname[index]['id']),
+                    ),
+                  );
+                } else if (type == 'tv') {
+                  // print(firstlistname[index]['id']);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) =>
+                              TvSeriesDetails(id: firstlistname[index]['id']),
+                    ),
+                  );
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
